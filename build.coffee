@@ -7,6 +7,8 @@ marked = require 'marked'
 fse = require 'fs-extra'
 ck = require 'coffeekup'
 
+cheerio = require 'cheerio'
+
 {exec} = require 'child_process'
 
 OUTDIR = 'dist'
@@ -142,8 +144,12 @@ doBuild = (odir = OUTDIR, cb) ->
     convert: ['mkdir', 'glob', (cb, res) ->
       async.map res.glob.sort().reverse(), ((fn, cb) ->
         fs.readFile fn, (err, content) ->
-          ret = {compiled: marked(content.toString()), fnew: path.parse(fn).name + '.html'}
-          fs.writeFile path.join(odir, ret.fnew), ck.render(posttpl, {post: ret, format: true}), (err) ->
+          ch = cheerio.load marked(content.toString())
+          fnew = path.parse(fn).name + '.html'
+          ch('h2').first().replaceWith('<h2><a href="' + fnew + '">' + ch('h2').first().text() + '</a></h2>')
+
+          ret = {compiled: ch.html(), fnew}
+          fs.writeFile path.join(odir, fnew), ck.render(posttpl, {post: ret, format: true}), (err) ->
             cb err, ret
       ), (err, posts) ->
         rendered = ck.render indextpl, {posts, format: true}

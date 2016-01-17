@@ -5,6 +5,7 @@
   "main": "build.coffee",
   "dependencies": {
     "async": "^1.4.2",
+    "cheerio": "^0.19.0",
     "coffee-script": "^1.10.0",
     "coffeekup": "^0.3.1",
     "fs-extra": "^0.26.3",
