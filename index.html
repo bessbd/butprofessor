@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>But Professor‽</title>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="static/blog.css" rel="stylesheet" />
+    <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-71639036-1', 'auto');
+ga('send', 'pageview');</script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="blog-header">
+        <h1 class="blog-title">
+          <a href="index.html">But Professor‽</a>
+        </h1>
+        <p class="lead blog-description">Some random deep thoughts from when “it’s compiling”</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+          <div class="blog-post">
+            <div><h2><a href="0002-do-automatinator.html">Itch of the Week: Archiving and Restoring Digitalocean Droplets Painlessly</a></h2>
+<h3 id="-i-a-k-a-going-full-nomad-with-do-automatinator-i-"><i>a.k.a. Going Full Nomad With do-automatinator</i></h3>
+<p><small>Jan 2, 2016</small></p>
+<p>In the previous (first, actually) post I have promised deep stuff. It is coming, just not yet.</p>
+<p>The motto used (<em>Release early, release often</em>) was popularized by Eric S. Raymond in his 1997 essay.
+The text also mentions other &quot;lessons&quot;, such as &quot;Every good work of software starts by scratching a developer&apos;s personal itch.&quot; (- <a href="https://en.wikipedia.org/wiki/The_Cathedral_and_the_Bazaar">The Cathedral and the Bazaar</a>)</p>
+<h3 id="the-backstory">The Backstory</h3>
+<ul>
+<li>Digitalocean offers cheap VPS service</li>
+<li>You only have to pay for the hours your machines &quot;exist&quot;, so you can go even cheaper if you are not running (permanent) services, but using the machines for development, etc.</li>
+<li>You don&apos;t have to pay when the machines are &quot;destroyed&quot;</li>
+<li>You can save the machines</li>
+<li>You can only save machines that are powered-off</li>
+</ul>
+<h3 id="the-itch">The Itch</h3>
+<ul>
+<li>You can&apos;t &quot;just&quot; shutdown, snapshot and destroy a machine with a single click of a button or a command</li>
+</ul>
+<h3 id="the-scratch">The Scratch</h3>
+<p><a href="https://github.com/bessbd/do-automatinator">do-automatinator</a> is a command-line tool to shut down, snapshot and destroy a machine at Digitalocean. (And to do the reverse, too)</p>
+<h3 id="some-tech-stuff">Some Tech Stuff</h3>
+<h4 id="setting-your-token">Setting Your Token</h4>
+<pre><code class="lang-bash">coffee app.coffee settoken &lt;your digitalocean token&gt;
+</code></pre>
+<p>(You only have to do this once)</p>
+<h4 id="shutting-down-snapshotting-and-destroying-a-machine">Shutting Down, Snapshotting and Destroying a Machine</h4>
+<pre><code class="lang-bash">coffee app.coffee save &lt;machine name&gt;
+</code></pre>
+<h4 id="creating-a-machine-from-a-snapshot-aka-restoring-a-machine-">Creating a Machine from a Snapshot (aka Restoring a Machine)</h4>
+<pre><code class="lang-bash">coffee app.coffee restore &lt;machine name&gt;
+</code></pre>
+<h3 id="the-conclusion">The Conclusion</h3>
+<p>This way, I (and anyone using the tool) can create a machine, set it up and only pay for the hours the machine is actually in use. (As a bonus, even backups are created, for free(!))</p>
+<h3 id="what-if-i-don-t-have-a-digitalocean-account-yet-">What if I don&apos;t have a Digitalocean account yet?</h3>
+<p>If you don&apos;t have a Digitalocean account yet, using <a href="https://m.do.co/c/3ae3e3d011af">this</a> link gets you $10 in DO credit (and some for me, too, thanks for the support).</p>
+</div>
+            <div class="addthis_sharing_toolbox"></div>
+            <a href="0002-do-automatinator.html">[permalink]</a>
+            <hr />
+          </div>
+          <div class="blog-post">
+            <div><h2><a href="0001-placeholder-prologue.html">Placeholder Prologue</a></h2>
+<p><small>Dec 18, 2015</small></p>
+<p>If you are looking for a prologue, you are in the right place, just not the right time (you should check back later, really)</p>
+<h3 id="but-professor-there-is-no-blog-or-anything-without-a-plausible-excuse-what-s-going-on-here-">But Professor, there is no blog or anything without a plausible excuse. What&apos;s going on here?</h3>
+<p>This blog is no exception from all the standard rules, however according to the motto &quot;<a href="https://en.wikipedia.org/wiki/Release_early,_release_often">Release early, release often</a>&quot; and lean startup principles after many months of procrastination this blog came to life.</p>
+<p>By way of introduction this blog serves two experiments. One in which a blog-engine is tested which is completely free (of cost, too), written only* in CoffeeScript and is fully static. The other experiment is one in which I try writing a blog.</p>
+<p>Stay tuned for deep thoughts or ideas how programming can be art and some other stuff</p>
+</div>
+            <div class="addthis_sharing_toolbox"></div>
+            <a href="0001-placeholder-prologue.html">[permalink]</a>
+            <hr />
+          </div>
+        </div>
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About</h4>
+            <p>A blog on programming as art, critical thinking and things like that</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56828401947111a4" async="async"></script>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
