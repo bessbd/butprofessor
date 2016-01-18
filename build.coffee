@@ -49,7 +49,6 @@ indextpl = ->
               p "A blog on programming as art, critical thinking and things like that"
       script type: "text/javascript", src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56828401947111a4", async: "async"
       script src: "bower_components/jquery/dist/jquery.min.js"
-      script src: "bower_components/jquery/assets/js/vendor/jquery.min.js"
       script src: "bower_components/bootstrap/dist/js/bootstrap.min.js"
 
 posttpl = ->
@@ -103,6 +102,12 @@ posttpl = ->
               noscript ->
                 text "Please enable JavaScript to view the "
                 a href: "https://disqus.com/?ref_noscript", rel: "nofollow", "comments powered by Disqus."
+              script type: "text/javascript", ->
+                """google_ad_client = "ca-pub-5489197102815138";
+                google_ad_slot = "1331359202";
+                google_ad_width = 728;
+                google_ad_height = 90;"""
+            script type: "text/javascript", src:"//pagead2.googlesyndication.com/pagead/show_ads.js"
             # nav ->
             #   ul ".pager", ->
             #     li ->
@@ -115,7 +120,6 @@ posttpl = ->
               p "A blog on programming as art, critical thinking and things like that"
       script type: "text/javascript", src: "//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-56828401947111a4", async: "async"
       script src: "bower_components/jquery/dist/jquery.min.js"
-      script src: "bower_components/jquery/assets/js/vendor/jquery.min.js"
       script src: "bower_components/bootstrap/dist/js/bootstrap.min.js"
 
 
