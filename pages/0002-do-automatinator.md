@@ -36,3 +36,6 @@ coffee app.coffee restore <machine name>
 ```
 ### The Conclusion
 This way, I (and anyone using the tool) can create a machine, set it up and only pay for the hours the machine is actually in use. (As a bonus, even backups are created, for free(!))
+
+### What if I don't have a Digitalocean account yet?
+If you don't have a Digitalocean account yet, using [this](https://m.do.co/c/3ae3e3d011af) link gets you $10 in DO credit (and some for me, too, thanks for the support).

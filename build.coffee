@@ -6,6 +6,7 @@ rimraf = require 'rimraf'
 marked = require 'marked'
 fse = require 'fs-extra'
 ck = require 'coffeekup'
+_ = require 'lodash'
 
 cheerio = require 'cheerio'
 
@@ -128,14 +129,12 @@ doBuild = (odir = OUTDIR, cb) ->
     rmdir: (cb) ->
       rimraf odir, {disableGlob: false}, (err) -> cb null
     mkdir: ['rmdir', (cb) ->
-      exec "mkdir #{odir}", (err, so, se) ->
-        console.log {so, se}
+      fse.mkdirs odir, (err) ->
         cb err
     ]
     bower: ['mkdir', (cb) ->
       exec 'bower install', (err, so, se) ->
-        console.log {so, se}
-        cb err
+        cb err, {so, se}
     ]
     bowermover: ['bower', (cb) ->
       fse.copy 'bower_components', path.join(odir, 'bower_components'), {clobber: true}, (err) -> cb err
@@ -151,14 +150,19 @@ doBuild = (odir = OUTDIR, cb) ->
           ch = cheerio.load marked(content.toString())
           fnew = path.parse(fn).name + '.html'
           ch('h2').first().replaceWith('<h2><a href="' + fnew + '">' + ch('h2').first().text() + '</a></h2>')
-
           ret = {compiled: ch.html(), fnew}
           fs.writeFile path.join(odir, fnew), ck.render(posttpl, {post: ret, format: true}), (err) ->
             cb err, ret
       ), (err, posts) ->
-        rendered = ck.render indextpl, {posts, format: true}
-        fs.writeFile path.join(odir, "index.html"), rendered, (error) ->
-          cb error
+        cb err, {posts}
+    ]
+    index: ['convert', (cb, res) ->
+      fs.writeFile path.join(odir, "index.html"), ck.render(indextpl, {posts: res.convert.posts, format: true}), (error) ->
+        cb error
+    ]
+    sitemap: ['convert', (cb, res) ->
+      fs.writeFile path.join(odir, "sitemap.txt"), ('http://bessbd.github.io/butprofessor/' + fn for fn in ['index.html'].concat(post.fnew for post in res.convert.posts)).join('\n'), (error) ->
+        cb error
     ]
   }, (err, results) ->
      console.log {err, results}
